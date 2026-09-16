@@ -1,25 +1,25 @@
 {
-    "name":  "sjq-novel-frontend",
-    "version":  "0.1.0",
-    "private":  true,
-    "scripts":  {
-                    "dev":  "next dev",
-                    "build":  "npx @opennextjs/cloudflare build",
-                    "start":  "next start",
-                    "pages:build":  "npx @opennextjs/cloudflare build",
-                    "pages:deploy":  "npm run pages:build \u0026\u0026 npx wrangler pages deploy"
-                },
-    "dependencies":  {
-                         "next":  "^16.3.5",
-                         "react":  "^19.0.0",
-                         "react-dom":  "^19.0.0"
-                     },
-    "devDependencies":  {
-                            "@opennextjs/cloudflare":  "latest",
-                            "@types/node":  "^20",
-                            "@types/react":  "^19",
-                            "@types/react-dom":  "^19",
-                            "typescript":  "^5",
-                            "wrangler":  "^3"
-                        }
+    "name": "sjq-novel-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "npx @opennextjs/cloudflare build",
+        "start": "next start",
+        "pages:build": "npx @opennextjs/cloudflare build",
+        "pages:deploy": "npm run pages:build && npx wrangler pages deploy"
+    },
+    "dependencies": {
+        "next": "^16.3.5",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "devDependencies": {
+        "@opennextjs/cloudflare": "latest",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "typescript": "^5",
+        "wrangler": "^4.132.0"
+    }
 }
