@@ -7,5 +7,11 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
+  },
+  "vars": {
+    "WP_URL": "https://dashboardyeye.maogeo.top",
+    "NEXT_PUBLIC_WP_URL": "https://dashboardyeye.maogeo.top",
+    "WP_APP_USER": "dashboardyeye_ma",
+    "WP_APP_PASS": "o9vw 4OHV uaeN SBZK bxGM r4fm"
   }
 }

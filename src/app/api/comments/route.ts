@@ -1,6 +1,6 @@
-const WP       = (process.env.WP_URL      || "").replace(/\/$/, "");
-const APP_USER =  process.env.WP_APP_USER || "";
-const APP_PASS =  process.env.WP_APP_PASS || "";
+const WP       = (process.env.WP_URL      || "https://dashboardyeye.maogeo.top").replace(/\/$/, "");
+const APP_USER =  process.env.WP_APP_USER || "dashboardyeye_ma";
+const APP_PASS =  process.env.WP_APP_PASS || "o9vw 4OHV uaeN SBZK bxGM r4fm";
 
 function authHeader(): Record<string, string> {
   if (APP_USER && APP_PASS) {

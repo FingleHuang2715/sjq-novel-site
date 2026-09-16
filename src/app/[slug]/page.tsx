@@ -22,7 +22,7 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
     getComments(post.id),
     getAdjacentPosts(post.id),
   ]);
-  const isMock = !process.env.WP_URL;
+  const isMock = false;
 
   const d = new Date(post.date);
   const dateStr = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;

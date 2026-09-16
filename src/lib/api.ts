@@ -12,7 +12,7 @@ export interface Category {
   count: number;
 }
 
-const WP = (process.env.WP_URL || "").replace(/\/$/, "");
+const WP = (process.env.WP_URL || "https://dashboardyeye.maogeo.top").replace(/\/$/, "");
 
 function wpUrl(route: string, params: Record<string, string | number> = {}): string {
   if (!WP) return "";
