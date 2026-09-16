@@ -1,10 +1,21 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPostBySlug, getComments, getAdjacentPosts } from "@/lib/api";
+import { getPostBySlug, getPostSlugs, getComments, getAdjacentPosts } from "@/lib/api";
 import Sidebar from "@/components/Sidebar";
 import CommentSection from "@/components/CommentSection";
 
-export const revalidate = 60;
+// Cache at edge, revalidate in background every 10 minutes
+export const revalidate = 600;
+
+// Pre-render all posts as static HTML on Cloudflare edge CDN
+export async function generateStaticParams() {
+  try {
+    const slugs = await getPostSlugs(); return slugs.map((slug: string) => ({ slug }));
+    
+  } catch {
+    return [];
+  }
+}
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
   const { slug } = await props.params;
@@ -18,11 +29,11 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  // Fetch comments and adjacent navigation in parallel
   const [comments, adjacent] = await Promise.all([
     getComments(post.id),
     getAdjacentPosts(post.id),
   ]);
-  const isMock = false;
 
   const d = new Date(post.date);
   const dateStr = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
@@ -67,7 +78,7 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
           postId={post.id}
           postAuthorId={post.author}
           initialComments={comments}
-          isMock={isMock}
+          isMock={false}
         />
       </div>
       <Sidebar type="article" />
