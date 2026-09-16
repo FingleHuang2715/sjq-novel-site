@@ -157,10 +157,10 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 /* ---- getCategoryPosts ---- */
-export async function getCategoryPosts(categoryId: number, page = 1): Promise<{ posts: Post[]; total: number; totalPages: number }> {
+export async function getCategoryPosts(categoryId: number, page = 1, perPage = 100): Promise<{ posts: Post[]; total: number; totalPages: number }> {
   if (!WP) return { posts: [], total: 0, totalPages: 0 };
   const url = wpUrl("/wp/v2/posts", {
-    categories: categoryId, per_page: 20, page,
+    categories: categoryId, per_page: perPage, page,
     _fields: "id,slug,date,title,_links,_embedded", _embed: 1
   });
   const { data, total, totalPages } = await fetchCached<WPPost[]>(url, 180);
