@@ -41,13 +41,20 @@ interface WPComment {
   content: { rendered: string }; status: string;
 }
 
+function cleanContent(html: string): string {
+  if (!html) return "";
+  return html
+    .replace(/<p>\s*(?:&nbsp;|\u00a0|\s)*<\/p>/gi, "")
+    .replace(/(<br\s*\/?>\s*){2,}/gi, "<br/>");
+}
+
 function wpToPost(p: WPPost): Post {
   const cats = (p._embedded?.["wp:term"]?.[0] || []).map((c) => ({
     id: c.id, name: c.name, slug: c.slug,
   }));
   return {
     id: p.id, slug: p.slug, date: p.date.slice(0, 10),
-    title: p.title.rendered, content: p.content?.rendered || "",
+    title: p.title.rendered, content: cleanContent(p.content?.rendered || ""),
     author: p.author || 0, categories: cats,
   };
 }
