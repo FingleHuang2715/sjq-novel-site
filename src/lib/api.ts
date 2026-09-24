@@ -44,7 +44,7 @@ interface WPComment {
 function cleanContent(html: string): string {
   if (!html) return "";
   return html
-    .replace(/<p>\s*(?:&nbsp;|\u00a0|\s)*<\/p>/gi, "")
+    .replace(/<p>\s*(?:&nbsp;|\u00a0|\s)*<\/p>/gi, "<p><br></p>")
     .replace(/(<br\s*\/?>\s*){2,}/gi, "<br/>");
 }
 
